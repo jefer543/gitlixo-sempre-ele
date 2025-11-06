@@ -67,15 +67,3 @@ export async function removerMensagem(id) {
   }
 }
 // src/services/mensagensService.js
-export async function criarMensagem(dados) {
-  try {
-    const resposta = await api.post('/mensagens', dados)
-    return resposta.data
-  } catch (erro) {
-    throw erro.response?.data || {
-      erro: 'NetworkError',
-      message: 'Falha ao criar mensagem.',
-      status: 500
-    }
-  }
-}
