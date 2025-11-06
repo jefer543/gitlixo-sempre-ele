@@ -13,6 +13,7 @@
       <span><slot name="autor"></slot></span> |
       <span><slot name="data"></slot></span>
 
+      <button @click="editar" class="btn-atualizar">Editar</button>
       <button @click="remover" class="btn-remover">Remover</button>
     </footer>
   </div>
@@ -23,7 +24,11 @@ const props = defineProps({
   id: Number
 })
 
-const emit = defineEmits(['remover'])
+const emit = defineEmits(['editar', 'remover'])
+
+function editar() {
+  emit('editar', props.id)
+}
 
 function remover() {
   emit('remover', props.id)
@@ -32,7 +37,7 @@ function remover() {
 
 <style scoped>
 .card-mensagem {
-  border: 1px solid var(--cor-primaria);
+  border: 1px solid #42b983; 
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 6px;
@@ -41,7 +46,7 @@ function remover() {
 
 header {
   font-weight: bold;
-  color: var(--cor-primaria);
+  color: #42b983; 
   margin-bottom: 5px;
 }
 
@@ -54,15 +59,43 @@ footer {
   align-items: center;
 }
 
-.btn-remover {
-  padding: 4px 10px;
+.btn-atualizar {
+  padding: 6px 12px;
   border: none;
-  background-color: var(--cor-primaria);
+  background-color: #42b983; 
   color: white;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 }
-.btn-remover:hover {
+
+.btn-atualizar:hover {
+  background-color: #379f72; 
   opacity: 0.9;
+}
+
+.btn-atualizar:focus {
+  outline: 2px solid #42b983;
+  outline-offset: 2px;
+}
+
+.btn-remover {
+  padding: 6px 12px;
+  border: none;
+  background-color: var(--cor-primaria, #42b983); 
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.btn-remover:hover {
+  background-color: #379f72; 
+  opacity: 0.9;
+}
+
+.btn-remover:focus {
+  outline: 2px solid #42b983;
+  outline-offset: 2px;
 }
 </style>
